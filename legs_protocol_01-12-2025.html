@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Протокол тренировки LEGS - 01.12.2024</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            border-bottom: 4px solid #2c3e50;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .header-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .info-item {
+            background: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        
+        .info-item strong {
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .section {
+            margin: 30px 0;
+        }
+        
+        .section-title {
+            background: #3498db;
+            color: white;
+            padding: 12px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 25px 0 15px 0;
+            border-radius: 5px;
+        }
+        
+        .subsection-title {
+            background: #95a5a6;
+            color: white;
+            padding: 8px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 15px 0 10px 0;
+            border-radius: 3px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        table th {
+            background: #34495e;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        
+        table td {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .exercise-block {
+            background: #fff;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        
+        .exercise-title {
+            color: #2c3e50;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+        }
+        
+        .exercise-number {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            width: 35px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .target-muscles {
+            background: #e8f4f8;
+            padding: 10px;
+            border-left: 4px solid #3498db;
+            margin: 10px 0;
+        }
+        
+        .progression {
+            background: #d5f4e6;
+            padding: 10px;
+            border-left: 4px solid #27ae60;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        
+        .technique {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 10px 0;
+        }
+        
+        .technique h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .technique ul {
+            margin-left: 20px;
+        }
+        
+        .technique li {
+            margin: 5px 0;
+        }
+        
+        .errors {
+            background: #f8d7da;
+            padding: 15px;
+            border-left: 4px solid #dc3545;
+            margin: 10px 0;
+        }
+        
+        .errors h4 {
+            color: #721c24;
+            margin-bottom: 10px;
+        }
+        
+        .errors ul {
+            margin-left: 20px;
+        }
+        
+        .errors li {
+            margin: 8px 0;
+            line-height: 1.5;
+        }
+        
+        .error-icon {
+            color: #dc3545;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+        
+        .solution {
+            color: #28a745;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .equipment {
+            background: #e7e7e7;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border-left: 4px solid #6c757d;
+        }
+        
+        .tempo-box {
+            background: #d1ecf1;
+            padding: 12px;
+            border-left: 4px solid #17a2b8;
+            margin: 10px 0;
+        }
+        
+        .tempo-box strong {
+            color: #0c5460;
+        }
+        
+        .volume {
+            background: #d1ecf1;
+            padding: 10px;
+            border-left: 4px solid #17a2b8;
+            margin: 10px 0;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .warmup-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .warmup-list li {
+            padding: 8px;
+            margin: 5px 0;
+            background: #f8f9fa;
+            border-left: 3px solid #6c757d;
+        }
+        
+        .critical {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        
+        .safety-warning {
+            background: #fff3cd;
+            padding: 12px;
+            border-left: 4px solid #ffc107;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            
+            .exercise-block {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>🏋️ ПРОТОКОЛ ТРЕНИРОВКИ: LEGS #2</h1>
+            
+            <div class="header-info">
+                <div class="info-item">
+                    <strong>Дата:</strong>
+                    01 декабря 2024 (понедельник)
+                </div>
+                <div class="info-item">
+                    <strong>Спортсмен:</strong>
+                    Андраник, 43 года
+                </div>
+                <div class="info-item">
+                    <strong>Вес тела:</strong>
+                    ~107 кг
+                </div>
+                <div class="info-item">
+                    <strong>Фаза цикла:</strong>
+                    Рекомпозиция/Жиросжигание
+                </div>
+                <div class="info-item">
+                    <strong>Микроцикл:</strong>
+                    Неделя 2 из 4
+                </div>
+                <div class="info-item">
+                    <strong>Предыдущая тренировка:</strong>
+                    24.11.2024
+                </div>
+            </div>
+        </div>
+
+        <!-- РАЗМИНКА -->
+        <div class="section">
+            <div class="section-title">🔥 РАЗМИНКА (15 МИНУТ)</div>
+            
+            <div class="subsection-title">Общая разминка (10 минут)</div>
+            <ul class="warmup-list">
+                <li><strong>Вид:</strong> Бег в гору на беговой дорожке</li>
+                <li><strong>Время:</strong> 10 минут (минимум, т.к. беговые не выставляются меньше)</li>
+                <li><strong>Скорость:</strong> 5-6 км/ч</li>
+                <li><strong>Наклон:</strong> 10-12%</li>
+                <li><strong>Интенсивность:</strong> Лёгкая, разогрев</li>
+                <li><strong>Цель:</strong> Повысить температуру тела, усилить кровоток в ногах</li>
+            </ul>
+
+            <div class="subsection-title">Суставная гимнастика и динамическая растяжка (5 минут)</div>
+            <table>
+                <tr>
+                    <th>Упражнение</th>
+                    <th>Повторы/Время</th>
+                    <th>Цель</th>
+                </tr>
+                <tr>
+                    <td>Leg Swings (вперёд-назад)</td>
+                    <td>10 каждая нога</td>
+                    <td>Тазобедренный сустав</td>
+                </tr>
+                <tr>
+                    <td>Leg Swings (влево-вправо)</td>
+                    <td>10 каждая нога</td>
+                    <td>Приводящие мышцы</td>
+                </tr>
+                <tr>
+                    <td>Hip Circles</td>
+                    <td>10 каждая сторона</td>
+                    <td>Мобильность таза</td>
+                </tr>
+                <tr>
+                    <td>Bodyweight Squats</td>
+                    <td>15 повторов</td>
+                    <td>Квадрицепсы, ягодицы</td>
+                </tr>
+                <tr>
+                    <td>Walking Lunges (без веса)</td>
+                    <td>10 шагов</td>
+                    <td>Активация стабилизаторов</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- ОСНОВНАЯ ЧАСТЬ -->
+        <div class="section">
+            <div class="section-title">💪 ОСНОВНАЯ ЧАСТЬ</div>
+
+            <!-- УПРАЖНЕНИЕ 1: BARBELL SQUAT -->
+            <div class="exercise-block">
+                <div class="exercise-title">
+                    <span class="exercise-number">1</span>
+                    BARBELL SQUAT (ПРИСЕДАНИЯ СО ШТАНГОЙ)
+                </div>
+
+                <div class="target-muscles">
+                    <strong>🎯 Целевые мышцы:</strong> Квадрицепсы (изоляция)
+                </div>
+
+                <div class="progression">
+                    📈 ПРОГРЕССИЯ: 4×12 @ 57кг → 4×15 @ 57кг (+3 повтора)
+                </div>
+
+                <p><strong>Подводящие подходы:</strong> 30кг×10</p>
+
+                <table>
+                    <tr><th>Подход</th><th>Вес</th><th>Повторы</th><th>Отдых</th><th>RPE</th></tr>
+                    <tr><td>1</td><td>57 кг</td><td>15</td><td>60 сек</td><td>7-8</td></tr>
+                    <tr><td>2</td><td>57 кг</td><td>15</td><td>60 сек</td><td>8</td></tr>
+                    <tr><td>3</td><td>57 кг</td><td>15</td><td>60 сек</td><td>8-9</td></tr>
+                    <tr><td>4</td><td>57 кг</td><td>15</td><td>60 сек</td><td>9</td></tr>
+                </table>
+
+                <p><strong>Темп выполнения:</strong> 2-1-3-0 (2 вверх, 1 пауза, 3 вниз)</p>
+
+                <div class="tempo-box">
+                    <strong>⏱️ ЗАЧЁТНЫЙ ТЕМП:</strong><br>
+                    • Один повтор: 6 секунд (2 вверх + 1 пауза + 3 вниз)<br>
+                    • Подход из 15 повторов: 1.5 минуты<br>
+                    <br>
+                    <strong class="critical">❌ НЕ ЗАЧЁТНЫЙ ТЕМП:</strong><br>
+                    • Рывки, раскачивание = работает инерция, а не квадрицепсы<br>
+                    • Бросать валик вниз (менее 2 секунд) = нет контроля<br>
+                    • Нет паузы вверху = не прочувствовал пиковое сокращение
+                </div>
+
+                <div class="technique">
+                    <h4>✅ ПРАВИЛЬНАЯ ТЕХНИКА:</h4>
+                    <ul>
+                        <li><strong>Положение:</strong> Спина и ягодицы прижаты к скамье</li>
+                        <li><strong>Движение вверх:</strong> 2 секунды до полного выпрямления</li>
+                        <li><strong>Пауза вверху:</strong> 1 секунда, напрячь квадрицепсы!</li>
+                        <li><strong>Движение вниз:</strong> 3 секунды медленно</li>
+                        <li><strong class="critical">КРИТИЧНО:</strong> НЕ отрывать ягодицы, НЕ бросать!</li>
+                    </ul>
+                </div>
+
+                <div class="errors">
+                    <h4>❌ ЧАСТЫЕ ОШИБКИ И РЕШЕНИЯ:</h4>
+                    <ul>
+                        <li><span class="error-icon">❌</span> <strong>Рывки и раскачивание</strong> <span class="solution">✅</span> Контролируемый темп</li>
+                        <li><span class="error-icon">❌</span> <strong>Отрыв ягодиц</strong> <span class="solution">✅</span> Ягодицы прижаты весь подход</li>
+                        <li><span class="error-icon">❌</span> <strong>Бросать валик</strong> <span class="solution">✅</span> Медленно 3 секунды</li>
+                        <li><span class="error-icon">❌</span> <strong>Нет паузы вверху</strong> <span class="solution">✅</span> 1 секунда пауза обязательна</li>
+                    </ul>
+                </div>
+
+                <div class="volume">
+                    📊 TARGET VOLUME: 57кг × 15 × 4 = 3,420 кг
+                </div>
+            </div>
+
+            <!-- УПРАЖНЕНИЕ 5: LEG CURL SEATED -->
+            <div class="exercise-block">
+                <div class="exercise-title">
+                    <span class="exercise-number">5</span>
+                    LEG CURL SEATED (СГИБАНИЕ НОГ СИДЯ)
+                </div>
+
+                <div class="target-muscles">
+                    <strong>🎯 Целевые мышцы:</strong> Hamstrings (изоляция)
+                </div>
+
+                <div class="progression">
+                    📈 ПРОГРЕССИЯ: 4×8 @ 45кг → 4×10 @ 45кг (+2 повтора)
+                </div>
+
+                <p><strong>Подводящие подходы:</strong> 25кг×10</p>
+
+                <table>
+                    <tr><th>Подход</th><th>Вес</th><th>Повторы</th><th>Отдых</th><th>RPE</th></tr>
+                    <tr><td>1</td><td>45 кг</td><td>10</td><td>60 сек</td><td>7-8</td></tr>
+                    <tr><td>2</td><td>45 кг</td><td>10</td><td>60 сек</td><td>8</td></tr>
+                    <tr><td>3</td><td>45 кг</td><td>10</td><td>60 сек</td><td>8-9</td></tr>
+                    <tr><td>4</td><td>45 кг</td><td>10</td><td>60 сек</td><td>9</td></tr>
+                </table>
+
+                <p><strong>Темп выполнения:</strong> 2-1-3-0</p>
+
+                <div class="tempo-box">
+                    <strong>⏱️ ЗАЧЁТНЫЙ ТЕМП:</strong><br>
+                    • Один повтор: 6 секунд (2 вниз + 1 пауза + 3 вверх)<br>
+                    • Подход из 10 повторов: 1 минута<br>
+                    <br>
+                    <strong class="critical">❌ НЕ ЗАЧЁТНЫЙ ТЕМП:</strong><br>
+                    • Рывки, помощь корпусом = работает не hamstrings<br>
+                    • Бросать вверх (менее 2 секунд разгибание) = нет контроля<br>
+                    • Отрыв таза от сиденья = читинг, снизь вес!
+                </div>
+
+                <div class="technique">
+                    <h4>✅ ПРАВИЛЬНАЯ ТЕХНИКА:</h4>
+                    <ul>
+                        <li><strong>Положение:</strong> Таз/спина прижаты к сиденью</li>
+                        <li><strong>Движение вниз:</strong> 2 секунды до максимального сокращения</li>
+                        <li><strong>Пауза внизу:</strong> 1 секунда, напрячь hamstrings!</li>
+                        <li><strong>Движение вверх:</strong> 3 секунды медленно</li>
+                        <li><strong class="critical">КРИТИЧНО:</strong> Таз НЕ отрывать!</li>
+                    </ul>
+                </div>
+
+                <div class="errors">
+                    <h4>❌ ЧАСТЫЕ ОШИБКИ И РЕШЕНИЯ:</h4>
+                    <ul>
+                        <li><span class="error-icon">❌</span> <strong>Отрыв таза</strong> <span class="solution">✅</span> Таз прижат, уменьшить вес</li>
+                        <li><span class="error-icon">❌</span> <strong>Рывки</strong> <span class="solution">✅</span> Контроль, работают только hamstrings</li>
+                        <li><span class="error-icon">❌</span> <strong>Помощь корпусом</strong> <span class="solution">✅</span> Корпус стабилен</li>
+                    </ul>
+                </div>
+
+                <div class="volume">
+                    📊 TARGET VOLUME: 45кг × 10 × 4 = 1,800 кг
+                </div>
+            </div>
+
+            <!-- УПРАЖНЕНИЕ 6: WALKING LUNGE -->
+            <div class="exercise-block">
+                <div class="exercise-title">
+                    <span class="exercise-number">6</span>
+                    WALKING LUNGE (ВЫПАДЫ В ДВИЖЕНИИ)
+                </div>
+
+                <div class="target-muscles">
+                    <strong>🎯 Целевые мышцы:</strong> Квадрицепсы, ягодицы, стабилизаторы
+                </div>
+
+                <div class="progression">
+                    📈 ПРОГРЕССИЯ: 4×15 @ 15кг → 4×15 @ 15кг (совершенствуем технику, меньше пауз)
+                </div>
+
+                <p><strong>Подводящие подходы:</strong> Без веса ×10 шагов</p>
+
+                <table>
+                    <tr><th>Подход</th><th>Вес (каждая)</th><th>Повторы</th><th>Отдых</th><th>RPE</th></tr>
+                    <tr><td>1</td><td>15 кг</td><td>15</td><td>60 сек</td><td>8</td></tr>
+                    <tr><td>2</td><td>15 кг</td><td>15</td><td>60 сек</td><td>8</td></tr>
+                    <tr><td>3</td><td>15 кг</td><td>15</td><td>60 сек</td><td>9</td></tr>
+                    <tr><td>4</td><td>15 кг</td><td>15</td><td>60 сек</td><td>9</td></tr>
+                </table>
+
+                <p><strong>Темп выполнения:</strong> 2-0-2-0 (контролируемый)</p>
+
+                <div class="tempo-box">
+                    <strong>⏱️ ЗАЧЁТНЫЙ ТЕМП:</strong><br>
+                    • Один повтор (одна нога): 4 секунды (2 вниз + 2 вверх/шаг)<br>
+                    • Альтернация БЕЗ пауз: левая→правая→левая→правая сразу<br>
+                    • 15 повторов (всего): 1 минута непрерывно<br>
+                    <br>
+                    <strong class="critical">❌ НЕ ЗАЧЁТНЫЙ ТЕМП:</strong><br>
+                    • Паузы между ногами больше 2-3 секунд = потеря темпа<br>
+                    • Слишком быстро (менее 3 секунд на повтор) = нет контроля<br>
+                    • Останавливаться чтобы отдохнуть = подход "сломан", снизь вес
+                </div>
+
+                <div class="technique">
+                    <h4>✅ ПРАВИЛЬНАЯ ТЕХНИКА:</h4>
+                    <ul>
+                        <li><strong>Хват:</strong> Гантели по бокам, нейтральный хват</li>
+                        <li><strong>Шаг:</strong> Широкий шаг 80-100 см</li>
+                        <li><strong>Опускание:</strong> Вертикально вниз, заднее колено к полу</li>
+                        <li><strong>Корпус:</strong> Вертикален весь подход!</li>
+                        <li><strong>Альтернация:</strong> Левая→правая БЕЗ пауз!</li>
+                        <li><strong class="critical">КРИТИЧНО:</strong> Непрерывное движение, корпус вертикален!</li>
+                    </ul>
+                </div>
+
+                <div class="errors">
+                    <h4>❌ ЧАСТЫЕ ОШИБКИ И РЕШЕНИЯ:</h4>
+                    <ul>
+                        <li><span class="error-icon">❌</span> <strong>Колено за носок</strong> <span class="solution">✅</span> Более широкий шаг</li>
+                        <li><span class="error-icon">❌</span> <strong>Наклон вперёд</strong> <span class="solution">✅</span> Корпус вертикален</li>
+                        <li><span class="error-icon">❌</span> <strong>Паузы между ногами</strong> <span class="solution">✅</span> Сразу альтернация!</li>
+                        <li><span class="error-icon">❌</span> <strong>Потеря баланса</strong> <span class="solution">✅</span> Медленнее, смотреть вперёд</li>
+                    </ul>
+                </div>
+
+                <div class="volume">
+                    📊 TARGET VOLUME: 30кг (total) × 15 × 4 = 1,800 кг
+                </div>
+            </div>
+
+            <!-- УПРАЖНЕНИЕ 7: HACK SQUAT -->
+            <div class="exercise-block">
+                <div class="exercise-title">
+                    <span class="exercise-number">7</span>
+                    HACK SQUAT (ПРИСЕДАНИЯ В ТРЕНАЖЁРЕ)
+                </div>
+
+                <div class="target-muscles">
+                    <strong>🎯 Целевые мышцы:</strong> Квадрицепсы (латеральная головка), ягодицы
+                </div>
+
+                <div class="progression">
+                    📈 ПРОГРЕССИЯ: 4×8 @ 35кг блинов → 4×10 @ 35кг блинов (+2 повтора)
+                </div>
+
+                <p><strong>Подводящие подходы:</strong> 20кг×10</p>
+                <p><strong>Примечание:</strong> В JEFIT записываешь только вес блинов (без веса платформы ~50-60кг)</p>
+
+                <table>
+                    <tr><th>Подход</th><th>Вес блинов</th><th>Повторы</th><th>Отдых</th><th>RPE</th></tr>
+                    <tr><td>1</td><td>35 кг</td><td>10</td><td>90 сек</td><td>7-8</td></tr>
+                    <tr><td>2</td><td>35 кг</td><td>10</td><td>90 сек</td><td>8</td></tr>
+                    <tr><td>3</td><td>35 кг</td><td>10</td><td>90 сек</td><td>9</td></tr>
+                    <tr><td>4</td><td>35 кг</td><td>10</td><td>90 сек</td><td>9-10</td></tr>
+                </table>
+
+                <p><strong>Темп выполнения:</strong> 3-0-1-0</p>
+                
+                <div class="equipment">
+                    <strong>🔧 РЕКОМЕНДУЕМАЯ ЭКИПИРОВКА:</strong><br>
+                    • Резиновый бандаж на колени (для профилактики заваливания коленей)
+                </div>
+
+                <div class="tempo-box">
+                    <strong>⏱️ ЗАЧЁТНЫЙ ТЕМП:</strong><br>
+                    • Один повтор: 4 секунды (3 вниз + 1 вверх)<br>
+                    • Без пауз вверху (сразу следующий повтор)<br>
+                    • Подход из 10 повторов: 40-50 секунд<br>
+                    <br>
+                    <strong class="critical">❌ НЕ ЗАЧЁТНЫЙ ТЕМП:</strong><br>
+                    • Слишком быстрое опускание (менее 2 секунд) = нет контроля<br>
+                    • Блокировка коленей вверху = нагрузка на суставы<br>
+                    • Это 7-е упражнение, ноги устали = нормально! Фокус на технику!
+                </div>
+
+                <div class="technique">
+                    <h4>✅ ПРАВИЛЬНАЯ ТЕХНИКА:</h4>
+                    <ul>
+                        <li><strong>Постановка ног:</strong> Середина платформы, ширина плеч</li>
+                        <li><strong>Положение:</strong> Спина прижата к подушке</li>
+                        <li><strong>Движение вниз:</strong> 3 секунды до 90°</li>
+                        <li><strong class="critical">КРИТИЧНО:</strong> Спина/поясница НЕ отрываются!</li>
+                    </ul>
+                </div>
+
+                <div class="errors">
+                    <h4>❌ ЧАСТЫЕ ОШИБКИ И РЕШЕНИЯ:</h4>
+                    <ul>
+                        <li><span class="error-icon">❌</span> <strong>Отрыв спины</strong> <span class="solution">✅</span> Не слишком глубоко</li>
+                        <li><span class="error-icon">❌</span> <strong>Пятки отрываются</strong> <span class="solution">✅</span> Толкать пятками</li>
+                        <li><span class="error-icon">❌</span> <strong>Колени внутрь</strong> <span class="solution">✅</span> Толкать наружу</li>
+                    </ul>
+                </div>
+
+                <div class="volume">
+                    📊 TARGET VOLUME: 35кг блинов × 10 × 4 = 1,400 кг
+                </div>
+            </div>
+
+            <!-- УПРАЖНЕНИЕ 8: CALF RAISE -->
+            <div class="exercise-block">
+                <div class="exercise-title">
+                    <span class="exercise-number">8</span>
+                    BARBELL CALF RAISE (ПОДЪЁМ НА НОСКИ)
+                </div>
+
+                <div class="target-muscles">
+                    <strong>🎯 Целевые мышцы:</strong> Икроножная, камбаловидная
+                </div>
+
+                <div class="progression">
+                    📈 ПРОГРЕССИЯ: 4×8 @ 75кг → 4×15 @ 55кг (-20кг, +7 повторов, полная амплитуда!)
+                </div>
+
+                <p><strong>Подводящие подходы:</strong> 30кг×10</p>
+
+                <table>
+                    <tr><th>Подход</th><th>Вес</th><th>Повторы</th><th>Отдых</th><th>RPE</th></tr>
+                    <tr><td>1</td><td>55 кг</td><td>15</td><td>60 сек</td><td>7-8</td></tr>
+                    <tr><td>2</td><td>55 кг</td><td>15</td><td>60 сек</td><td>8</td></tr>
+                    <tr><td>3</td><td>55 кг</td><td>15</td><td>60 сек</td><td>8-9</td></tr>
+                    <tr><td>4</td><td>55 кг</td><td>15</td><td>60 сек</td><td>9</td></tr>
+                </table>
+
+                <p><strong>Темп выполнения:</strong> 1-1-3-0 (1 вверх, 1 пауза, 3 вниз)</p>
+
+                <div class="tempo-box">
+                    <strong>⏱️ ЗАЧЁТНЫЙ ТЕМП:</strong><br>
+                    • Один повтор: 5 секунд (1 вверх + 1 пауза + 3 вниз)<br>
+                    • Подход из 15 повторов: 1.5 минуты<br>
+                    • ПОЛНАЯ амплитуда: максимум вверх + максимум вниз!<br>
+                    <br>
+                    <strong class="critical">❌ НЕ ЗАЧЁТНЫЙ ТЕМП:</strong><br>
+                    • Неполная амплитуда (не поднимаешься на кончики носков) = не считается!<br>
+                    • Не опускаешь пятки ниже платформы = нет растяжения<br>
+                    • Отскок внизу, раскачивание = работает инерция, а не икры<br>
+                    • Сгибание коленей = превращается в приседания
+                </div>
+
+                <div class="technique">
+                    <h4>✅ ПРАВИЛЬНАЯ ТЕХНИКА:</h4>
+                    <ul>
+                        <li><strong>Setup:</strong> Платформа 10-15 см под носки</li>
+                        <li><strong>Колени:</strong> Микросгиб 5-10°, зафиксировать!</li>
+                        <li><strong>Движение вверх:</strong> Максимально высоко на цыпочки</li>
+                        <li><strong>Пауза вверху:</strong> 1 секунда, напрячь икры!</li>
+                        <li><strong>Движение вниз:</strong> 3 секунды, пятки максимально низко</li>
+                        <li><strong class="critical">КРИТИЧНО:</strong> ПОЛНАЯ амплитуда!</li>
+                    </ul>
+                </div>
+
+                <div class="errors">
+                    <h4>❌ ЧАСТЫЕ ОШИБКИ И РЕШЕНИЯ:</h4>
+                    <ul>
+                        <li><span class="error-icon">❌</span> <strong>Сгибание коленей</strong> <span class="solution">✅</span> Колени зафиксированы</li>
+                        <li><span class="error-icon">❌</span> <strong>Неполная амплитуда вверх</strong> <span class="solution">✅</span> На кончики носков!</li>
+                        <li><span class="error-icon">❌</span> <strong>Неполная амплитуда вниз</strong> <span class="solution">✅</span> Пятки ниже платформы!</li>
+                        <li><span class="error-icon">❌</span> <strong>Нет паузы вверху</strong> <span class="solution">✅</span> 1 секунда обязательна</li>
+                    </ul>
+                </div>
+
+                <div class="volume">
+                    📊 TARGET VOLUME: 55кг × 15 × 4 = 3,300 кг
+                </div>
+            </div>
+
+            <!-- УПРАЖНЕНИЕ 9: AB WHEEL -->
+            <div class="exercise-block">
+                <div class="exercise-title">
+                    <span class="exercise-number">9</span>
+                    AB WHEEL (РОЛИК ДЛЯ ПРЕССА)
+                </div>
+
+                <div class="target-muscles">
+                    <strong>🎯 Целевые мышцы:</strong> Прямая мышца живота, поперечная, кор
+                </div>
+
+                <div class="progression">
+                    📈 ПРОГРЕССИЯ: 8,6,6 → 3×8 (правильная техника!)
+                </div>
+
+                <table>
+                    <tr><th>Подход</th><th>Повторы</th><th>Отдых</th><th>RPE</th></tr>
+                    <tr><td>1</td><td>8</td><td>30 сек</td><td>8</td></tr>
+                    <tr><td>2</td><td>8</td><td>30 сек</td><td>9</td></tr>
+                    <tr><td>3</td><td>8</td><td>—</td><td>9-10</td></tr>
+                </table>
+
+                <p><strong>Темп выполнения:</strong> 2-0-2-0 (контролируемый)</p>
+                
+                <div class="equipment">
+                    <strong>🔧 РЕКОМЕНДУЕМАЯ ЭКИПИРОВКА:</strong><br>
+                    • Коврик под колени (для комфорта)
+                </div>
+
+                <div class="tempo-box">
+                    <strong>⏱️ ЗАЧЁТНЫЙ ТЕМП:</strong><br>
+                    • Один повтор: 4 секунды (2 вперёд + 2 назад)<br>
+                    • Пресс напряжён МАКСИМАЛЬНО весь подход!<br>
+                    • Подход из 8 повторов: 30-40 секунд<br>
+                    <br>
+                    <strong class="critical">❌ НЕ ЗАЧЁТНЫЙ ТЕМП:</strong><br>
+                    • ПРОГИБ В ПОЯСНИЦЕ = НЕ СЧИТАЕТСЯ! Опасно!<br>
+                    • Расслабление пресса = нет работы мышц<br>
+                    • Слишком далеко катить (теряешь контроль) = уменьши амплитуду<br>
+                    • Лучше меньше амплитуда, но правильная техника!
+                </div>
+
+                <div class="technique">
+                    <h4>✅ ПРАВИЛЬНАЯ ТЕХНИКА:</h4>
+                    <ul>
+                        <li><strong>Положение:</strong> Спина прямая/округлая, пресс МАКСИМАЛЬНО напряжён!</li>
+                        <li><strong>Руки:</strong> Прямые весь подход</li>
+                        <li><strong>Движение:</strong> Катить до точки контроля спины</li>
+                        <li><strong class="critical">КРИТИЧНО:</strong> Поясница НЕ прогибается!</li>
+                    </ul>
+                </div>
+
+                <div class="errors">
+                    <h4>❌ ЧАСТЫЕ ОШИБКИ И РЕШЕНИЯ:</h4>
+                    <ul>
+                        <li><span class="error-icon">❌</span> <strong>ПРОГИБ В ПОЯСНИЦЕ</strong> <span class="solution">✅</span> Напрячь пресс, подкрутить таз, не катить далеко!</li>
+                        <li><span class="error-icon">❌</span> <strong>Сгибание локтей</strong> <span class="solution">✅</span> Руки прямые</li>
+                        <li><span class="error-icon">❌</span> <strong>Расслабление пресса</strong> <span class="solution">✅</span> Пресс напряжён всегда!</li>
+                    </ul>
+                </div>
+
+                <div class="safety-warning">
+                    ⚠️ БЕЗОПАСНОСТЬ: Если болит поясница — немедленно остановиться! Правильная техника (с напряжением) сложнее, но безопаснее!</div>
+            </div>
+
+        </div>
+
+        <!-- КАРДИО -->
+        <div class="section">
+            <div class="section-title">🏃 КАРДИО (15 МИНУТ)</div>
+
+            <div class="subsection-title">Бег в гору (15 минут)</div>
+            <ul class="warmup-list">
+                <li><strong>Вид:</strong> Беговая дорожка</li>
+                <li><strong>Время:</strong> 15 минут</li>
+                <li><strong>Скорость:</strong> 5-6 км/ч</li>
+                <li><strong>Наклон:</strong> 10-12%</li>
+                <li><strong>Интенсивность:</strong> Средняя (можешь говорить)</li>
+                <li><strong>Цель:</strong> Жиросжигание, ~150-200 ккал</li>
+            </ul>
+        </div>
+
+        <!-- ИТОГОВЫЙ VOLUME -->
+        <div class="section">
+            <div class="section-title">📊 ИТОГОВЫЙ TARGET VOLUME</div>
+
+            <table>
+                <tr>
+                    <th>Упражнение</th>
+                    <th>Target Volume (кг)</th>
+                </tr>
+                <tr><td>Barbell Squat</td><td>2,760</td></tr>
+                <tr><td>Romanian Deadlift</td><td>2,520</td></tr>
+                <tr><td>Leg Press</td><td>7,680</td></tr>
+                <tr><td>Leg Extension</td><td>3,420</td></tr>
+                <tr><td>Leg Curl (Seated)</td><td>1,800</td></tr>
+                <tr><td>Walking Lunge</td><td>1,800</td></tr>
+                <tr><td>Hack Squat</td><td>1,400 (только блины)</td></tr>
+                <tr><td>Calf Raise</td><td>3,300</td></tr>
+                <tr><td colspan="2" style="background: #3498db; color: white; font-weight: bold; text-align: center;">TOTAL: ~24,680 кг</td></tr>
+            </table>
+        </div>
+
+        <!-- КЛЮЧЕВЫЕ ФОКУСЫ -->
+        <div class="section">
+            <div class="section-title">🎯 КЛЮЧЕВЫЕ ФОКУСЫ НА ЭТОЙ ТРЕНИРОВКЕ</div>
+
+            <div style="background: #fff3cd; padding: 15px; border-left: 4px solid #ffc107; margin: 10px 0;">
+                <strong>1. Barbell Squat:</strong> ПРАВИЛЬНОЕ ДЫХАНИЕ (чтобы не мутнело в глазах!)<br><br>
+                <strong>2. Romanian Deadlift:</strong> Чувствовать натяжение ягодиц и hamstrings весь подход<br><br>
+                <strong>3. Leg Press:</strong> Полная амплитуда, поясница не отрывается<br><br>
+                <strong>4. Leg Extension:</strong> Медленный темп 2-1-3-0, пауза вверху<br><br>
+                <strong>5. Leg Curl:</strong> Таз не отрывается (Seated сложнее!)<br><br>
+                <strong>6. Walking Lunge:</strong> Сразу альтернация ног БЕЗ пауз (левая-правая-левая-правая)<br><br>
+                <strong>7. Hack Squat:</strong> Записывать только вес блинов, делать все 4 подхода<br><br>
+                <strong>8. Calf Raise:</strong> ПОЛНАЯ амплитуда (максимум вверх + максимум вниз)<br><br>
+                <strong>9. Ab Wheel:</strong> Пресс напряжён, поясница НЕ прогибается
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div style="margin-top: 40px; padding-top: 20px; border-top: 2px solid #2c3e50; text-align: center; color: #7f8c8d;">
+            <p><strong>Протокол составлен:</strong> 24.11.2024</p>
+            <p><strong>Предыдущая тренировка Legs:</strong> 24.11.2024</p>
+            <p><strong>Тренировка:</strong> Legs #3 (01.12.2024)</p>
+            <p style="margin-top: 20px; font-size: 18px; color: #2c3e50;">
+                <strong>💪 ВПЕРЁД К ЦЕЛИ 80 КГ @ 8-10% BF! 🔥</strong>
+            </p>
+            <p style="margin-top: 10px; font-size: 14px; color: #95a5a6;">
+                <strong>Примечание:</strong> После тренировки делай упражнения для плеча (реабилитация):<br>
+                Band External Rotation • Band Lateral Raise • Band Front Raise • 10кг сопротивление
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>
+
